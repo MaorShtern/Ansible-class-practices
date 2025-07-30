@@ -1,0 +1,15 @@
+- name: Configure NGINX Virtual Hosts
+  hosts: web_servers
+  vars:
+    sites:
+      - { domain: "example.com", docroot: "/var/www/example" }
+      - { domain: "test.com", docroot: "/var/www/test" }
+  tasks:
+    - name: Deploy virtual hosts configuration
+      template:
+        src: ../templates/nginx_vhosts.conf.j2
+        dest: /etc/nginx/conf.d/default.conf
+    - name: Restart NGINX
+      service:
+        name: nginx
+        state: restarted

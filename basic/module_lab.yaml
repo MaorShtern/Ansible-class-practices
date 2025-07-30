@@ -1,0 +1,27 @@
+
+- name: Basic Module Usage
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Create a new directory /tmp/testdir
+      file:
+        path: /tmp/testdir
+        state: directory
+        mode: '0755'
+
+    - name: Create a new file /tmp/testdir/hello.txt with the content "Hello, Ansible!"
+      copy:
+        dest: /tmp/testdir/hello.txt
+        content: "Hello, Ansible!"
+
+    - name: Change the ownership of the file to a user named ansible
+      file:
+        path: /tmp/testdir/hello.txt
+        owner: user1
+        group: developers
+        mode: '0644'
+
+    - name: Verify the file content using the shell module
+      shell: cat /tmp/testdir/hello.txt
+

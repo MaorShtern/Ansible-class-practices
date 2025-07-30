@@ -1,0 +1,8 @@
+- name: Modular NGINX Setup
+  hosts: localhost
+  become: true
+  tasks:
+    - import_tasks: tasks/install_nginx.yaml
+    - import_tasks: tasks/configure_nginx.yaml
+    - import_tasks: tasks/deploy_index.yaml
+    

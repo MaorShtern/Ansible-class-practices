@@ -1,0 +1,6 @@
+- name: Use my role
+  host: all
+  roles:
+  - myrole
+
+

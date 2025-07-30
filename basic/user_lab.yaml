@@ -1,0 +1,29 @@
+
+
+
+
+- name: User and Group Management
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Create a group named developers
+      group:
+        name: developers
+        state: present
+
+    - name: Create user1 and add to the developers group
+      user:
+        name: user1
+        state: present
+        groups: developers
+        append: yes
+        create_home: true
+
+    - name: Create user2 and add to the developers group
+      user:
+        name: user2
+        state: present
+        groups: developers
+        append: yes
+        create_home: true
