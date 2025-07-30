@@ -1,0 +1,11 @@
+- name: Demonstrate Variable Usage
+  hosts: web_servers
+  vars_files:
+    - vars/common.yaml
+  tasks:
+    - name: Install package using variable
+      apt:
+        name: "{{ package_name }}"
+        state: present
+
+        

@@ -1,7 +1,0 @@
-- name: Configure Web Server
-  hosts: web_servers
-  become: true
-  roles:
-    - webserver
-
-    
