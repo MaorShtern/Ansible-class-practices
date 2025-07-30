@@ -1,0 +1,31 @@
+- name: Install NGINX
+  apt:
+    name: "{{ webserver_package }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Deploy Virtual Host Configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/{{ server_name }}
+  notify: Restart NGINX
+
+- name: Enable Virtual Host
+  file:
+    src: /etc/nginx/sites-available/{{ server_name }}
+    dest: /etc/nginx/sites-enabled/{{ server_name }}
+    state: link
+  notify: Restart NGINX
+
+- name: Deploy Application Homepage
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Ensure NGINX is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+

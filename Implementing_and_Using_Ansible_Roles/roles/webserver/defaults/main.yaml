@@ -1,0 +1,4 @@
+webserver_package: nginx
+site_title: "Welcome to My Website"
+server_name: example.com
+
