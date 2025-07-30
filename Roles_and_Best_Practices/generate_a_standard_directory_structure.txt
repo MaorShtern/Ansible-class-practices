@@ -1,0 +1,31 @@
+
+
+
+
+Perfect! When you run:
+
+bash:
+ansible-galaxy init roles/webserver
+
+Ansible will generate a standard directory structure for the role webserver.
+
+✅ Output Structure
+bash
+Copy
+Edit
+roles/webserver/
+├── defaults/
+│   └── main.yml
+├── files/
+├── handlers/
+│   └── main.yml
+├── meta/
+│   └── main.yml
+├── tasks/
+│   └── main.yml
+├── templates/
+├── tests/
+│   ├── inventory
+│   └── test.yml
+└── vars/
+    └── main.yml
