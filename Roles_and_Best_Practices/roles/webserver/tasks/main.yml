@@ -1,0 +1,19 @@
+# roles/webserver/tasks/main.yml
+
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+  when: ansible_os_family == "Debian"
+
+
+- name: Deploy NGINX Config from Template
+  template:  # Use template module instead of copy
+    src: nginx_vhosts.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: Restart NGINX
+
+- name: Deploy Custom HTML Page
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
